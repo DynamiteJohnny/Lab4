@@ -27,7 +27,7 @@ public class vibration extends AppCompatActivity {
                 Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
                 //vibrator.vibrate(pattern, -1);
                 if (Build.VERSION.SDK_INT >= 26) {
-                    ((Vibrator) getSystemService(VIBRATOR_SERVICE)).vibrate(VibrationEffect.createOneShot(150,10));
+                    ((Vibrator) getSystemService(VIBRATOR_SERVICE)).vibrate(VibrationEffect.createOneShot(1500,10));
                 } else {
                     ((Vibrator) getSystemService(VIBRATOR_SERVICE)).vibrate(150);
                 }

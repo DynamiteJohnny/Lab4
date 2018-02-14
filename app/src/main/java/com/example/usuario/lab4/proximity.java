@@ -27,10 +27,10 @@ public class proximity extends AppCompatActivity {
             public void onSensorChanged(SensorEvent sensorEvent) {
                 if(sensorEvent.values[0] < proximitySensor.getMaximumRange()) {
                     // Detected something nearby
-                    getWindow().getDecorView().setBackgroundColor(Color.RED);
+                    getWindow().getDecorView().setBackgroundColor(Color.WHITE);
                 } else {
                     // Nothing is nearby
-                    getWindow().getDecorView().setBackgroundColor(Color.GREEN);
+                    getWindow().getDecorView().setBackgroundColor(Color.BLACK);
                 }
             }
 

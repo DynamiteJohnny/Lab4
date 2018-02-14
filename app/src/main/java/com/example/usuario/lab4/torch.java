@@ -14,6 +14,7 @@ public class torch extends AppCompatActivity {
 
     private CameraManager mCameraManager;
     private String mCameraId;
+    boolean activecam = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,36 +28,31 @@ public class torch extends AppCompatActivity {
             public void onClick(View v) {
                 mCameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
 
-                try {
-                    mCameraId = mCameraManager.getCameraIdList()[0];
-                } catch (CameraAccessException e){
-                    e.printStackTrace();
-                }
-                try {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        mCameraManager.setTorchMode(mCameraId, true);
+                if (!activecam) {
+                    try {
+                        mCameraId = mCameraManager.getCameraIdList()[0];
+                    } catch (CameraAccessException e) {
+                        e.printStackTrace();
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        Button offButton =(Button)findViewById(R.id.button_off);
-        offButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                try {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        mCameraManager.setTorchMode(mCameraId, false);
-
+                    try {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            mCameraManager.setTorchMode(mCameraId, true);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
+                    activecam = true;
+                }else {
+                    try {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            mCameraManager.setTorchMode(mCameraId, false);
+                            activecam = false;
+                        }
 
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
-
             }
         });
 
